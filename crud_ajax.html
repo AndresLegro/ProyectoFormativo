@@ -211,7 +211,7 @@
                 "Content-type": "application/json; charset=utf-8"
               }
             },
-             // res = await fetch(`http://localhost:5555/santos/${e.target.dataset.id}`, options),
+              res = await fetch(`http://www.mendezmrf10.somee.com/api/Producto/Eliminar/${e.target.dataset.idProducto}`, options),
               json = await res.json();
 
             if (!res.ok) throw { status: res.status, statusText: res.statusText };
