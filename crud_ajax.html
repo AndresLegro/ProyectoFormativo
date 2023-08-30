@@ -18,7 +18,13 @@
         <input type="text" name="codigoBarra" placeholder="Codigo de Barras" required>
         <br>
         <br>
-        <input type="text" name="constelacion" placeholder="constelación" required>
+        <input type="text" name="descripcion" placeholder="descripcion" required>
+        <br>
+        <br>
+        <input type="text" name="marca" placeholder="marca" required>
+        <br>
+        <br>
+        <input type="text" name="precio" placeholder="precio" required>
         <br>
         <br>
         <input class="btn btn-info" type="submit" value="Enviar">
@@ -27,15 +33,17 @@
     </article>
     <article>
       <br>
-      <h2>Ver Santos</h2>
+      <h2>Ver Productos</h2>
       <div class="card-body"> <!-- Agregar el elemento con la clase card-body -->
         <br>
         <table class="crud-table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Constelación</th>
-              <th>Acciones</th>
+              <th>ID</th>
+              <th>Descripcion</th>
+              <th>Marca</th>
+              <th>Codigo de Barras</th>
+              <th>Precio</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -48,8 +56,11 @@
 
   <template id="crud-template">
     <tr>
-      <td class="name"></td>
-      <td class="constellation"></td>
+      <td class="id"></td>
+      <td class="descripcion"></td>
+      <td class="marca"></td>
+      <td class="codigoBarra"></td>
+      <td class="precio"></td>
       <td>
         <button class="edit btn btn-warning">Editar</button>
         <button class="delete btn btn-danger">Eliminar</button>
@@ -66,33 +77,46 @@
       $template = d.getElementById("crud-template").content,
       $fragment = d.createDocumentFragment();
 
-    const getAll = async () => {
-      try {
-        let res = await fetch("http://www.mendezmrf10.somee.com/api/Producto/Lista"),
-        //"http://localhost:5555/santos")
-          json = await res.json();
+      const getAll = async () => {
+          try {
+            let res = await fetch("http://www.mendezmrf10.somee.com/api/Producto/Lista"),
+              json = await res.json();
 
-        if (!res.ok) throw { status: res.status, statusText: res.statusText };
+            if (!res.ok) throw { status: res.status, statusText: res.statusText };
 
-        console.log(json);
-        json.forEach(el => {
-          $template.querySelector(".name").textContent = el.nombre;
-          $template.querySelector(".constellation").textContent = el.constelacion;
-          $template.querySelector(".edit").dataset.id = el.id;
-          $template.querySelector(".edit").dataset.name = el.nombre;
-          $template.querySelector(".edit").dataset.constellation = el.constelacion;
-          $template.querySelector(".delete").dataset.id = el.id;
+            console.log(json);
 
-          let $clone = d.importNode($template, true);
-          $fragment.appendChild($clone);
-        });
+            // Verifica si la propiedad "response" contiene un arreglo
+            if (Array.isArray(json.response)) {
+              json.response.forEach(el => {
+                $template.querySelector(".id").textContent = el.idProducto;                
+                $template.querySelector(".descripcion").textContent = el.descripcion;
+                $template.querySelector(".marca").textContent = el.marca;
+                $template.querySelector(".codigoBarra").textContent = el.codigoBarra;
+                $template.querySelector(".precio").textContent = el.precio;
 
-        $table.querySelector("tbody").appendChild($fragment);
-      } catch (err) {
-        let message = err.statusText || "Ocurrió un error";
-        $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
-      }
-    }
+                $template.querySelector(".edit").dataset.idProducto = el.idProducto;
+                $template.querySelector(".edit").dataset.descripcion = el.descripcion;
+                $template.querySelector(".edit").dataset.marca = el.marca;
+                $template.querySelector(".edit").dataset.codigoBarra = el.codigoBarra;
+                $template.querySelector(".edit").dataset.precio = el.precio;
+                $template.querySelector(".delete").dataset.idProducto = el.idProducto;
+
+                let $clone = d.importNode($template, true);
+                $fragment.appendChild($clone);
+              });
+
+              $table.querySelector("tbody").appendChild($fragment);
+            } else {
+              console.error("La propiedad 'response' no es una matriz válida en la respuesta JSON.");
+            }
+          } catch (err) {
+            console.error("Error:", err);
+            let message = err.statusText || "Ocurrió un error";
+            $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
+          }
+
+        }
 
     d.addEventListener("DOMContentLoaded", getAll);
 
@@ -110,8 +134,10 @@
                 "Content-type": "application/json; charset=utf-8"
               },
               body: JSON.stringify({
-                nombre: e.target.nombre.value,
-                constelacion: e.target.constelacion.value
+                descripcion: e.target.descripcion.value,
+                marca: e.target.marca.value,
+                codigoBarra: e.target.codigoBarra.value,
+                precio: e.target.precio.value
               })
             },
               res = await fetch("http://www.mendezmrf10.somee.com/api/Producto/Guardar", options),
@@ -121,9 +147,11 @@
 
             location.reload();
           } catch (err) {
+            console.error("Error:", err);
             let message = err.statusText || "Ocurrió un error";
-            $form.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
+            $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
           }
+
         }
         else {
           //Update - PUT
@@ -134,8 +162,11 @@
                 "Content-type": "application/json; charset=utf-8"
               },
               body: JSON.stringify({
-                nombre: e.target.nombre.value,
-                constelacion: e.target.constelacion.value
+                idProducto: e.target.id.value,
+                descripcion: e.target.descripcion.value,
+                marca: e.target.marca.value,
+                codigoBarra: e.target.codigoBarra.value,
+                precio: e.target.precio.value
               })
             },
               res = await fetch(`http://www.mendezmrf10.somee.com/api/Producto/Editar`, options),
@@ -144,26 +175,32 @@
             if (!res.ok) throw { status: res.status, statusText: res.statusText };
 
             location.reload();
-          } catch (err) {
-            let message = err.statusText || "Ocurrió un error";
-            $form.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
           }
+          catch (err) 
+          {
+            console.error("Error:", err);
+            let message = err.statusText || "Ocurrió un error";
+            $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
+          }
+
         }
       }
     });
     
     d.addEventListener("click", async e => {
       if(e.target.matches(".edit")){
-        $title.textContent = "Editar Santo";
-        $form.nombre.value = e.target.dataset.name;
-        $form.constelacion.value = e.target.dataset.constellation;
-        $form.id.value = e.target.dataset.id;
+        $title.textContent = "Editar Producto";
+        $form.descripcion.value = e.target.dataset.descripcion;
+        $form.marca.value = e.target.dataset.marca;
+        $form.codigoBarra.value = e.target.dataset.codigoBarra;
+        $form.precio.value = e.target.dataset.precio;
+        $form.id.value = e.target.dataset.idProducto; // Llenar el campo ID para la edición
         console.log("Datos enviados al form")
       }
    
 
     if (e.target.matches(".delete")) {
-        let isDelete = confirm(`¿Estás seguro de eliminar el id ${e.target.dataset.id}?`);
+        let isDelete = confirm(`¿Estás seguro de eliminar el id ${e.target.dataset.idProducto}?`);
 
         if (isDelete) {
           //Delete - DELETE
@@ -174,16 +211,18 @@
                 "Content-type": "application/json; charset=utf-8"
               }
             },
-              res = await fetch(`http://localhost:5555/santos/${e.target.dataset.id}`, options),
+             // res = await fetch(`http://localhost:5555/santos/${e.target.dataset.id}`, options),
               json = await res.json();
 
             if (!res.ok) throw { status: res.status, statusText: res.statusText };
 
             location.reload();
           } 
-          catch (err) {
+          catch (err) 
+          {
+            console.error("Error:", err);
             let message = err.statusText || "Ocurrió un error";
-            alert(`Error ${err.status}: ${message}`);
+            $table.insertAdjacentHTML("afterend", `<p><b>Error ${err.status}: ${message}</b></p>`);
           }
       }
     }
@@ -191,3 +230,6 @@
     </script>
 
 </html>
+
+
+
