@@ -36,7 +36,7 @@
       <h2>Ver Productos</h2>
       <div class="card-body"> <!-- Agregar el elemento con la clase card-body -->
         <br>
-        <table class="crud-table">
+        <table class="crud-table table table">
           <thead>
             <tr>
               <th>ID</th>
@@ -44,6 +44,7 @@
               <th>Marca</th>
               <th>Codigo de Barras</th>
               <th>Precio</th>
+              <th>Acciones</th>
             </tr>
           </thead>
           <tbody></tbody>
@@ -151,7 +152,7 @@
             console.log("Respuesta de la API:", json);
 
             $form.reset();
-            
+
             location.reload();
           } catch (err) {
             console.error("Error:", err);
