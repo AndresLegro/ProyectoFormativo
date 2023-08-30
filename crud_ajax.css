@@ -4,3 +4,37 @@
     align-items: center;
     
 }
+
+
+input[type="text"] {
+
+
+    border: thin solid #dedede ;
+    border-radius: 0.25rem;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    outline: none;
+    width: 50%;
+    font-size: 1rem;
+    line-height: 1;
+    background-color: transparent;
+
+}
+
+input[type="submit"]{
+    border: thin solid #444;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem 0 0;
+    display: inline-block;
+    background-color: #ffffff;
+    color: #444;
+    font-weight: bold;
+    font-size: 1rem;
+    line-height: 1;
+    text-transform: none;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
