@@ -70,6 +70,7 @@
   <script>
     /* **********     Curso JavaScript: 117. APIs REST: CRUD con Fetch (1/2) - #jonmircha     ********** */
     /* **********     Curso JavaScript: 118. APIs REST: CRUD con Fetch (2/2) - #jonmircha     ********** */
+    //http://www.mendezmrf10.somee.com/swagger/index.html      Ruta de swagger
     const d = document,
       $table = d.querySelector(".crud-table"),
       $form = d.querySelector(".crud-form"),
@@ -127,6 +128,7 @@
 
         if (!e.target.id.value) {
           //Create - POST
+        console.log("Paso 1: Antes de hacer la solicitud POST");
           try {
             let options = {
               method: "POST",
@@ -140,11 +142,17 @@
                 precio: e.target.precio.value
               })
             },
+            
               res = await fetch("http://www.mendezmrf10.somee.com/api/Producto/Guardar", options),
               json = await res.json();
+              console.log(options);
 
             if (!res.ok) throw { status: res.status, statusText: res.statusText };
+            
+            console.log("Respuesta de la API:", json);
 
+            $form.reset();
+            
             location.reload();
           } catch (err) {
             console.error("Error:", err);
@@ -173,6 +181,8 @@
               json = await res.json();
 
             if (!res.ok) throw { status: res.status, statusText: res.statusText };
+            
+            $form.reset();
 
             location.reload();
           }
