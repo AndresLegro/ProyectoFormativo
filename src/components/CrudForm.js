@@ -109,7 +109,7 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               <option value="">Selecciona una red</option>
               {networkOptions.map((option) => (
                 <option key={option.idNetwork} value={option.idNetwork}>
-                  {option.idNetwork}
+                  {option.networkName}
                 </option>
               ))}
             </select>
