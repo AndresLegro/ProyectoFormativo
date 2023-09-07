@@ -7,7 +7,7 @@ import Message from "./Message";
 
 
 const  CrudApp = () => {
-    const [db, setDb] = useState(null);
+    const [db, setDb] = useState([]);
     const [dataToEdit, setDataToEdit] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ const  CrudApp = () => {
     let api = helpHttp();
     let urlGet= "http://www.mendezmrf10.somee.com/api/ContractInstructor/List";
     let urlPost= "http://www.mendezmrf10.somee.com/api/ContractInstructor/Save";
-    let urlPut = "http://www.mendezmrf10.somee.com/api/ContractInstructor/Edit";
+  
 
     useEffect(() => {
       setLoading(true);
@@ -57,18 +57,52 @@ const  CrudApp = () => {
     };
 
     const updateData = (data) => {
-        let newData = db.map((el) => (el.idInstructor === data.idInstructor ? data : el));
-        setDb(newData);
+
+        let urlPut = "http://www.mendezmrf10.somee.com/api/ContractInstructor/Edit";
+        let endPoint = `${urlPut}/${data.idInstructor}`;
+
+        let options= 
+        { body : data , headers: {"content-type": "application/json"},};
+
+        api.put(endPoint, options).then((res) => {
+          if(!res.err)
+          {
+             let newData = db.map((el) => (el.idInstructor === data.idInstructor ? data : el));
+             setDb(newData);
+          }else
+          {
+            setError(res);
+          }
+        })
+        
       };
 
       const deleteData = (idInstructor) => {
+
         let isDelete = window.confirm(
           `¿Estás seguro de eliminar el registro con el id '${idInstructor}'?`
         );
-    
-        if (isDelete) {
-          let newData = db.filter((el) => el.idInstructor !== idInstructor);
-          setDb(newData);
+          
+        if (isDelete)
+        {
+          let urlDel = "http://www.mendezmrf10.somee.com/api/ContractInstructor/Edit";
+          let endPoint = `${urlDel}/${idInstructor}`;
+
+          let options =
+            { headers: { "content-type": "application/json" }, };
+        
+
+        api.del(endPoint,options).then((res)=>{
+          if (!res.err)
+          {
+            let newData = db.filter((el) => el.idInstructor !== idInstructor);
+            setDb(newData);
+          }
+          else{
+            setError(res);
+          }
+        })
+          
         } else {
           return;
         }
@@ -92,12 +126,14 @@ const  CrudApp = () => {
           />
           )}
 
-          {db && 
-          (<CrudTable
-            data={db}
-            setDataToEdit={setDataToEdit}
-            deleteData={deleteData}
-          />)}
+          {db && (
+            <CrudTable
+              data={db}
+              setDataToEdit={setDataToEdit}
+              deleteData={deleteData}
+            />
+          )}
+
                     
         </div>
       );

@@ -42,6 +42,19 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     });
   };
 
+  const formatDate = (date) => {
+    const formattedDate = new Date(date);
+  
+    // Obtiene el año, mes y día por separado
+    const year = formattedDate.getFullYear();
+    const month = (formattedDate.getMonth() + 1).toString().padStart(2, '0');
+    const day = formattedDate.getDate().toString().padStart(2, '0');
+  
+    // Formatea la fecha como "yyyy-MM-dd"
+    return `${year}-${month}-${day}`;
+  };
+  
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -107,12 +120,13 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
               value={form.networkId}
             >
               <option value="">Selecciona una red</option>
-              {networkOptions.map((option) => (
+              {networkOptions && networkOptions.map((option) => (
                 <option key={option.idNetwork} value={option.idNetwork}>
                   {option.networkName}
                 </option>
               ))}
             </select>
+
           </div>
           <button type="submit" className="btn btn-info">
             Enviar

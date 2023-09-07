@@ -1,44 +1,51 @@
 import React from "react";
 import CrudTableRow from "./CrudTableRow";
 
+// Definición del componente CrudTable
 const CrudTable = ({ data, setDataToEdit, deleteData }) => {
     return (
+        // Contenedor principal del componente
         <div className="App card">
             <div className="card-body">
-            <div className="table-responsive">
+                <div className="table-responsive">
+                    {/* Encabezado de la tabla */}
+                    <h3>Tabla de Datos</h3>
+                    <table className="table table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Start Date:</th>
+                                <th>End Date:</th>
+                                <th>Nombre de la Red:</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
 
-            <h3>Tabla de Datos</h3>
-            <table className="table table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
-                        <th>Nombre de la Red:</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    {data.length === 0 ? (
-                        <tr>
-                            <td colSpan="3">Sin datos</td>
-                        </tr>
-                    ) : (
-                        data.map((el) => 
-                        <CrudTableRow 
-                        key={el.idInstructor} 
-                        el={el}
-                        setDataToEdit = {setDataToEdit}
-                        deleteData= {deleteData} 
-                        />)
-                    )}
-                </tbody>
-            </table>
-        </div>
-        </div>
+                        <tbody>
+                            {/* Condicional para manejar el caso en que no haya datos */}
+                            {data.length > 0 ? (
+                                // Mapeo de datos para renderizar filas de la tabla
+                                data.map((el) => (
+                                    <CrudTableRow
+                                        key={el.id}
+                                        el={el}
+                                        setDataToEdit={setDataToEdit}
+                                        deleteData={deleteData}
+                                    />
+                                ))
+                            ) : (
+                                // Mostrar mensaje de "Sin datos" si no hay elementos en 'data'
+                                <tr>
+                                    <td colSpan="3">Sin datos</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     );
 };
 
+// Exporta el componente CrudTable para su uso en otras partes de la aplicación
 export default CrudTable;
