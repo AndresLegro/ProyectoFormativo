@@ -1,22 +1,14 @@
 import React from "react";
 
-const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
+const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormViewFullTimeInstructor }) => {
   // Desestructura las propiedades del objeto 'el' pasado como argumento
-  let { idInstructor, name, startDate, endDate, oNetwork } = el;
-
-  // Convierte las fechas de DateTime a Date
-  const startDateAsDate = new Date(startDate);
-  const endDateAsDate = new Date(endDate);
-
-  // Opciones para formatear la fecha en español
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  let { idInstructor, name, position, oNetwork } = el;
 
   return (
     // Renderiza una fila de una tabla con los datos del objeto 'el'
     <tr>
       <td>{name}</td>
-      <td>{startDateAsDate.toLocaleDateString('es-ES', options)}</td>
-      <td>{endDateAsDate.toLocaleDateString('es-ES', options)}</td>
+      <td>{position}</td>
       {/* Renderiza el nombre de la red ('oNetwork.networkName') o un mensaje de carga si no está definido */}
       <td>
         {oNetwork ? (
@@ -29,7 +21,8 @@ const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
         {/* Botón de edición que llama a la función 'setDataToEdit' con el objeto 'el' */}
         <button className="btn btn-warning" onClick={() => {
           setDataToEdit(el); // Establece el objeto 'el' como dato para editar
-          showFormView(); // Llama a la función 'showFormView' para mostrar el formulario
+          showFormViewFullTimeInstructor(); // Llama a la función 'showFormViewFullTimeInstructor' para mostrar el formulario
+          console.log(el)
         }}>
           Editar
         </button>&nbsp;        {/* Botón de eliminación que llama a la función 'deleteData' con 'idInstructor' como argumento */}

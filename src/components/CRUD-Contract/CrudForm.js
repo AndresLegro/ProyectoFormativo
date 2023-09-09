@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa estilos de Bootstrap
-import { helpHttp } from "../helpers/helpHttp"; // Importa una utilidad para realizar solicitudes HTTP
+import { helpHttp } from "../../helpers/helpHttp"; // Importa una utilidad para realizar solicitudes HTTP
 
 // Define un objeto con valores iniciales para el formulario
 const initialForm = {
@@ -19,17 +19,9 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   // Efecto que se ejecuta cuando cambia 'dataToEdit' para cargar datos de edición
   useEffect(() => {
     if (dataToEdit) {
-      // Muestra las fechas antes y después del formateo
-      console.log("Fecha de inicio antes del formateo:", dataToEdit.startDate);
-      console.log("Fecha de fin antes del formateo:", dataToEdit.endDate);
-  
       // Formatea las fechas al formato ISO 8601 antes de asignarlas al estado
       const formattedStartDate = new Date(dataToEdit.startDate).toISOString().split('T')[0];
       const formattedEndDate = new Date(dataToEdit.endDate).toISOString().split('T')[0];
-  
-      // Muestra las fechas después del formateo
-      console.log("Fecha de inicio después del formateo:", formattedStartDate);
-      console.log("Fecha de fin después del formateo:", formattedEndDate);
   
       // Asigna los datos de edición al estado del formulario
       setForm({

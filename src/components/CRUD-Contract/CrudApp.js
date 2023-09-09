@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CrudForm from "./CrudForm"; // Importa el componente de formulario
 import CrudTable from "./CrudTable"; // Importa el componente de tabla
-import { helpHttp } from "../helpers/helpHttp"; // Importa una utilidad para realizar solicitudes HTTP
+import { helpHttp } from "../../helpers/helpHttp"; // Ajusta la ruta de importación
 import Loader from "./Loader"; // Importa el componente de carga
 import Message from "./Message"; // Importa el componente de mensajes
 
