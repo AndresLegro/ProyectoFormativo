@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { helpHttp } from "../helpers/helpHttp";
+import 'bootstrap/dist/css/bootstrap.min.css'; // Importa estilos de Bootstrap
+import { helpHttp } from "../helpers/helpHttp"; // Importa una utilidad para realizar solicitudes HTTP
 
+// Define un objeto con valores iniciales para el formulario
 const initialForm = {
   name: "",
   startDate: "",
@@ -10,30 +11,51 @@ const initialForm = {
 };
 
 const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
+  // Define estados para el formulario y las opciones de red
   const [form, setForm] = useState(initialForm);
   const [networkOptions, setNetworkOptions] = useState([]);
-  const api = helpHttp();
+  const api = helpHttp(); // Instancia de la utilidad de solicitud HTTP
 
+  // Efecto que se ejecuta cuando cambia 'dataToEdit' para cargar datos de edición
   useEffect(() => {
     if (dataToEdit) {
-      setForm(dataToEdit);
+      // Muestra las fechas antes y después del formateo
+      console.log("Fecha de inicio antes del formateo:", dataToEdit.startDate);
+      console.log("Fecha de fin antes del formateo:", dataToEdit.endDate);
+  
+      // Formatea las fechas al formato ISO 8601 antes de asignarlas al estado
+      const formattedStartDate = new Date(dataToEdit.startDate).toISOString().split('T')[0];
+      const formattedEndDate = new Date(dataToEdit.endDate).toISOString().split('T')[0];
+  
+      // Muestra las fechas después del formateo
+      console.log("Fecha de inicio después del formateo:", formattedStartDate);
+      console.log("Fecha de fin después del formateo:", formattedEndDate);
+  
+      // Asigna los datos de edición al estado del formulario
+      setForm({
+        ...dataToEdit,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate,
+      });
     } else {
-      setForm(initialForm);
+      setForm(initialForm); // Si no hay datos de edición, reinicia el formulario
     }
   }, [dataToEdit]);
 
+  // Efecto que carga las opciones de red desde una API al montar el componente
   useEffect(() => {
     const urlNetwork = "http://www.mendezmrf10.somee.com/api/Network/List";
     
     api.get(urlNetwork).then((res) => {
       if (!res.err) {
-        setNetworkOptions(res.response);
+        setNetworkOptions(res.response); // Almacena las opciones de red en el estado
       } else {
         console.error("Error al obtener las opciones de red:", res.err);
       }
     });
   }, [api]);
 
+  // Función para manejar cambios en los campos del formulario
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({
@@ -41,20 +63,8 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
       [name]: value,
     });
   };
-
-  const formatDate = (date) => {
-    const formattedDate = new Date(date);
   
-    // Obtiene el año, mes y día por separado
-    const year = formattedDate.getFullYear();
-    const month = (formattedDate.getMonth() + 1).toString().padStart(2, '0');
-    const day = formattedDate.getDate().toString().padStart(2, '0');
-  
-    // Formatea la fecha como "yyyy-MM-dd"
-    return `${year}-${month}-${day}`;
-  };
-  
-
+  // Función para manejar el envío del formulario
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -63,15 +73,17 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
       return;
     }
 
+    // Llama a 'createData' o 'updateData' según si se está creando o actualizando
     if (dataToEdit === null || form.idInstructor === undefined || form.idInstructor === "") {
       createData(form);
     } else {
       updateData(form);
     }
 
-    handleReset();
+    handleReset(); // Limpia el formulario
   };
 
+  // Función para limpiar el formulario y los datos de edición
   const handleReset = (e) => {
     setForm(initialForm);
     setDataToEdit(null);
@@ -126,14 +138,13 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
                 </option>
               ))}
             </select>
-
           </div>
-          <button type="submit" className="btn btn-info">
+          <button type="submit" className="btn btn-success">
             Enviar
           </button>&nbsp;
           <button
             type="reset"
-            className="btn btn-info"
+            className="btn btn-dark"
             onClick={handleReset}
           >
             Limpiar

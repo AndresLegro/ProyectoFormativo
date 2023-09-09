@@ -2,7 +2,7 @@ import React from "react";
 import CrudTableRow from "./CrudTableRow";
 
 // Definición del componente CrudTable
-const CrudTable = ({ data, setDataToEdit, deleteData }) => {
+const CrudTable = ({ data, setDataToEdit, deleteData, showFormView }) => {
     return (
         // Contenedor principal del componente
         <div className="App card">
@@ -31,6 +31,7 @@ const CrudTable = ({ data, setDataToEdit, deleteData }) => {
                                         el={el}
                                         setDataToEdit={setDataToEdit}
                                         deleteData={deleteData}
+                                        showFormView={showFormView} // Asegúrate de pasar showFormView como prop
                                     />
                                 ))
                             ) : (
