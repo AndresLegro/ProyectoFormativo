@@ -1,0 +1,38 @@
+.thLeft{
+    background-color: #C5E8FC !important;
+    border-top-left-radius: 10px !important; 
+}
+
+.thRight{
+    background-color: #C5E8FC !important;
+    border-top-right-radius: 10px !important; 
+}
+
+.thTable{
+    background-color: #C5E8FC !important; 
+}
+
+.tdTableRow
+{
+    background-color: #e7e9f4 !important;
+    text-align: center;
+}
+
+.h3Table{
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    text-align: center;
+}
+
+.center-table {
+    display: inline-table;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    height: 80vh; /* Ajusta la altura según tu diseño */
+    text-align: center;
+
+}
+
+
+  

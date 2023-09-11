@@ -1,25 +1,24 @@
 import React from "react";
 import CrudTableRow from "./CrudTableRow";
 
-
 // Definición del componente CrudTable
 const CrudTable = ({ data, setDataToEdit, deleteData, showFormView }) => {
     return (
         // Contenedor principal del componente
-        <div className="App card">
-            <div className="card-body">
+        <div className="App">
+            <div className="card-body center-table">
                 <div className="table-responsive">
                     {/* Encabezado de la tabla */}
-                    <h3>Instructores Contratistas :</h3>
+                    <h3 className="h3Table">Instructores Contratistas :</h3>
                     <br></br>
-                    <table className="table table">
+                    <table className="table center-table">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Start Date:</th>
-                                <th>End Date:</th>
-                                <th>Nombre de la Red:</th>
-                                <th>Acciones</th>
+                                <th className="thLeft">Nombre</th>
+                                <th className="thTable">Fecha Inicio:</th>
+                                <th className="thTable">Fecha Fin:</th>
+                                <th className="thTable">Nombre de la Red:</th>
+                                <th className="thRight">Acciones:</th>
                             </tr>
                         </thead>
 

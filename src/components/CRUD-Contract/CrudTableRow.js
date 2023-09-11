@@ -1,4 +1,5 @@
 import React from "react";
+import "./main.css";
 
 const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
   // Desestructura las propiedades del objeto 'el' pasado como argumento
@@ -14,18 +15,18 @@ const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
   return (
     // Renderiza una fila de una tabla con los datos del objeto 'el'
     <tr>
-      <td>{name}</td>
-      <td>{startDateAsDate.toLocaleDateString('es-ES', options)}</td>
-      <td>{endDateAsDate.toLocaleDateString('es-ES', options)}</td>
+      <th className="tdTableRow">{name}</th>
+      <td className="tdTableRow">{startDateAsDate.toLocaleDateString('es-ES', options)}</td>
+      <td className="tdTableRow">{endDateAsDate.toLocaleDateString('es-ES', options)}</td>
       {/* Renderiza el nombre de la red ('oNetwork.networkName') o un mensaje de carga si no está definido */}
-      <td>
+      <td className="tdTableRow">
         {oNetwork ? (
           oNetwork.networkName
         ) : (
           el.loading ? (<span>Cargando...</span>) : null // Verifica si el objeto 'el' tiene una propiedad 'loading'
         )}
       </td>
-      <td>
+      <th className="tdTableRow">
         {/* Botón de edición que llama a la función 'setDataToEdit' con el objeto 'el' */}
         <button className="btn btn-warning" onClick={() => {
           setDataToEdit(el); // Establece el objeto 'el' como dato para editar
@@ -35,7 +36,7 @@ const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
           Editar
         </button>&nbsp;        {/* Botón de eliminación que llama a la función 'deleteData' con 'idInstructor' como argumento */}
         <button className="btn btn-danger" onClick={() => deleteData(idInstructor , el)}>Eliminar</button>
-      </td>
+      </th>
     </tr>
   );
 };
