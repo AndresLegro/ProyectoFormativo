@@ -1,5 +1,8 @@
 import React from "react";
 import "./main.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserPen } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
   // Desestructura las propiedades del objeto 'el' pasado como argumento
@@ -27,16 +30,15 @@ const CrudTableRow = ({ el, setDataToEdit, deleteData, showFormView }) => {
         )}
       </td>
       <th className="tdTableRow">
-        {/* Botón de edición que llama a la función 'setDataToEdit' con el objeto 'el' */}
+        {/* Botón de edición con el icono FontAwesome */}
         <button className="btn btn-warning" onClick={() => {
           setDataToEdit(el); // Establece el objeto 'el' como dato para editar
           showFormView(); // Llama a la función 'showFormView' para mostrar el formulario
-          console.log(el)
-        }}>
-          Editar
-        </button>&nbsp;        {/* Botón de eliminación que llama a la función 'deleteData' con 'idInstructor' como argumento */}
-        <button className="btn btn-danger" onClick={() => deleteData(idInstructor , el)}>Eliminar</button>
-      </th>
+        }}><FontAwesomeIcon icon={faUserPen} />    </button>&nbsp; {/* Botón de eliminación que llama a la función 'deleteData' con 'idInstructor' como argumento */}
+       
+        <button className="btn btn-danger" onClick={() => deleteData(idInstructor, el)}>
+        <FontAwesomeIcon icon={faTrash} /></button>
+       </th>
     </tr>
   );
 };

@@ -4,6 +4,8 @@ import CrudTable from "./CrudTable"; // Importa el componente de tabla
 import { helpHttp } from "../../helpers/helpHttp"; // Ajusta la ruta de importación
 import Loader from "./Loader"; // Importa el componente de carga
 import Message from "./Message"; // Importa el componente de mensajes
+import "./main.css";
+
 
 
 const CrudAppFullTimeInstructor = () => {
@@ -141,11 +143,11 @@ const CrudAppFullTimeInstructor = () => {
       )}
 
       <div>
-        <button className="btn btn-primary" onClick={showFormViewFullTimeInstructor}>
+        <button className="btn addButton" onClick={showFormViewFullTimeInstructor}>
           Registrar Nuevo Instructor
         </button>
         &nbsp;
-        <button className="btn btn-dark" onClick={showRecordsViewFullTimeInstructor}>
+        <button className="btn showButton" onClick={showRecordsViewFullTimeInstructor}>
           Ver Registros
         </button>
       </div>

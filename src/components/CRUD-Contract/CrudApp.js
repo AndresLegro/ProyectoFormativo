@@ -4,6 +4,8 @@ import CrudTable from "./CrudTable"; // Importa el componente de tabla
 import { helpHttp } from "../../helpers/helpHttp"; // Ajusta la ruta de importación
 import Loader from "./Loader"; // Importa el componente de carga
 import Message from "./Message"; // Importa el componente de mensajes
+import "./main.css";
+
 
 const CrudApp = () => {
   const [db, setDb] = useState([]); // Estado para almacenar los datos de instructores
@@ -138,11 +140,11 @@ const CrudApp = () => {
       )}
 
       <div>
-        <button className="btn btn-primary" onClick={showFormView}>
+        <button className="btn addButton" onClick={showFormView}>
           Registrar Nuevo Instructor
         </button>
         &nbsp;
-        <button className="btn btn-dark" onClick={showRecordsView}>
+        <button className="btn showButton" onClick={showRecordsView}>
           Ver Registros
         </button>
       </div>

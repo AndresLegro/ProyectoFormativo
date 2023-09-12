@@ -1,11 +1,12 @@
 import React from "react";
 import CrudTableRow from "./CrudTableRow";
+import "./main.css";
 
 // Definición del componente CrudTable
 const CrudTable = ({ data, setDataToEdit, deleteData, showFormView }) => {
     return (
         // Contenedor principal del componente
-        <div className="App">
+        <div className="container">
             <div className="card-body center-table">
                 <div className="table-responsive">
                     {/* Encabezado de la tabla */}
@@ -13,7 +14,7 @@ const CrudTable = ({ data, setDataToEdit, deleteData, showFormView }) => {
                     <br></br>
                     <table className="table center-table">
                         <thead>
-                            <tr>
+                            <tr> 
                                 <th className="thLeft">Nombre</th>
                                 <th className="thTable">Fecha Inicio:</th>
                                 <th className="thTable">Fecha Fin:</th>
@@ -45,7 +46,7 @@ const CrudTable = ({ data, setDataToEdit, deleteData, showFormView }) => {
                     </table>
                 </div>
             </div>
-        </div>
+         </div> 
     );
 };
 
