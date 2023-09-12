@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css'; // Importa estilos de Bootstrap
 import { helpHttp } from "../../helpers/helpHttp"; // Importa una utilidad para realizar solicitudes HTTP
+import "./main.css";
 
 // Define un objeto con valores iniciales para el formulario
 const initialForm = {
@@ -82,16 +83,18 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   };
 
   return (
-    <div className="card">
-      <div className="card-body">
-        <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
+  <div className="container">
+    <div className="card ">
+      <div className="center-table-form">
+        <h3 className="h3Table">{dataToEdit ? "Editar" : "Agregar"}</h3>
+        <br></br>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
               type="text"
               name="name"
-              placeholder="name"
-              className="form-control"
+              placeholder="Nombre"
+              className="form-control inputForm"
               onChange={handleChange}
               value={form.name}
             />
@@ -134,16 +137,12 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
           <button type="submit" className="btn btn-success">
             Enviar
           </button>&nbsp;
-          <button
-            type="reset"
-            className="btn btn-dark"
-            onClick={handleReset}
-          >
-            Limpiar
-          </button>
+          
         </form>
       </div>
     </div>
+  </div>
+  
   );
 };
 

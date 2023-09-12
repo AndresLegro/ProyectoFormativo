@@ -52,6 +52,14 @@
     text-align: center;
 }
 
+.containerButtons {
+    display: flex;
+    flex-direction: row; /* Stack the buttons vertically */
+    justify-content: flex-end; /* Align items to the bottom */
+    align-items: flex-end; /* Center horizontally */
+    text-align: center;
+  }
+  
 .addButton
 {
     background-color: #007BB8;

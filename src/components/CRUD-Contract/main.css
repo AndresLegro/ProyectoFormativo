@@ -4,7 +4,6 @@
     justify-content: center;
 }
 
-
 .thLeft{
     background-color: #C5E8FC !important;
     border-top-left-radius: 10px !important; 
@@ -49,10 +48,34 @@
     display: inline-table;
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
-    height: 80vh; /* Ajusta la altura según tu diseño */
     text-align: center;
 }
 
+.center-table-form {
+    display: inline-table;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    text-align: center;
+    height: 300px;
+    width: 400px;
+    margin: 16px;
+
+}
+
+.inputForm{
+
+    border-top-right-radius: 10px !important; 
+    font-family: 'Raleway', sans-serif;
+}
+
+.containerButtons {
+    display: flex;
+    flex-direction: row; /* Stack the buttons vertically */
+    justify-content: flex-end; /* Align items to the bottom */
+    align-items: flex-end; /* Center horizontally */
+    text-align: center;
+  }
+  
 .addButton
 {
     background-color: #007BB8;
@@ -68,7 +91,3 @@
     border-radius: 15px !important; 
     font-family: 'Raleway', sans-serif;
 }
-
-
-
-  

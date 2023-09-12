@@ -142,7 +142,7 @@ const CrudAppFullTimeInstructor = () => {
         </div>
       )}
 
-      <div>
+      <div className="containerButtons">
         <button className="btn addButton" onClick={showFormViewFullTimeInstructor}>
           Registrar Nuevo Instructor
         </button>

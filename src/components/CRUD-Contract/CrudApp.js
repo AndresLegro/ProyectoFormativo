@@ -105,6 +105,7 @@ const CrudApp = () => {
   const showFormView = () => {
     setShowForm(true);
     setShowRecords(false);
+    setDataToEdit(null);
   };
 
   const showRecordsView = () => {
@@ -138,8 +139,8 @@ const CrudApp = () => {
           ) : null}
         </div>
       )}
-
-      <div>
+      <br></br>
+      <div className="containerButtons">
         <button className="btn addButton" onClick={showFormView}>
           Registrar Nuevo Instructor
         </button>

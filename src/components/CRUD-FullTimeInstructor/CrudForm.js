@@ -16,17 +16,18 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   const [form, setForm] = useState(initialForm);
   const [networkOptions, setNetworkOptions] = useState([]);
   const api = helpHttp(); // Instancia de la utilidad de solicitud HTTP
-
-
+  
   // Efecto que actualiza el estado 'form' cuando 'dataToEdit' cambia
   useEffect(() => {
-    if (dataToEdit) {
-      setForm(dataToEdit); // Copia los datos de 'dataToEdit' a 'form'
+    if (dataToEdit && dataToEdit.idInstructor !== undefined && dataToEdit.idInstructor !== "") {
+      // Si dataToEdit existe y tiene un idInstructor definido, establece el estado form en dataToEdit
+      setForm(dataToEdit);
     } else {
-      setForm(initialForm); // Restablece 'form' a su estado inicial si no hay datos para editar
+      // Si no estás editando, establece el estado form en el formulario inicial vacío
+      setForm(initialForm);
     }
   }, [dataToEdit]);
-
+  
 
   // Efecto que carga las opciones de red desde una API al montar el componente
   useEffect(() => {
@@ -81,6 +82,7 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
     <div className="card">
       <div className="card-body">
         <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
+        <br></br>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
