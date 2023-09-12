@@ -135,7 +135,7 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             </select>
           </div>
           <button type="submit" className="btn btn-success">
-            Enviar
+            {dataToEdit ? "Editar" : "Agregar"}
           </button>&nbsp;
           
         </form>

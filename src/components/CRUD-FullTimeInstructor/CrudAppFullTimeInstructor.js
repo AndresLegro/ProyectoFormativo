@@ -104,13 +104,14 @@ const CrudAppFullTimeInstructor = () => {
 
    // Funciones para controlar las vistas
    const showFormViewFullTimeInstructor = () => {
-    console.log("showFormViewFullTimeInstructor se está ejecutando");
     setShowForm(true);
     setShowRecords(false);
+    if (dataToEdit) {
+      setDataToEdit(null);
+    }
   };
 
   const showRecordsViewFullTimeInstructor = () => {
-    console.log("showRecordsViewFullTimeInstructor se está ejecutando");
     setShowForm(false);
     setShowRecords(true);
   };
@@ -141,7 +142,7 @@ const CrudAppFullTimeInstructor = () => {
           ) : null}
         </div>
       )}
-
+      <br></br>
       <div className="containerButtons">
         <button className="btn addButton" onClick={showFormViewFullTimeInstructor}>
           Registrar Nuevo Instructor

@@ -8,16 +8,16 @@ const CrudTable = ({ data, setDataToEdit, deleteData, showFormViewFullTimeInstru
     return (
         // Contenedor principal del componente
         <div className="container">
-            <div className="card-body center-table">
+            <div className="card-body center-table background-gradient">
                 <div className="table-responsive">
                     {/* Encabezado de la tabla */}
                     <h3 className="h3Table">Instructores de Planta :</h3>
                     <br></br>
-                    <table className="table center-table">
+                    <table className="table center-table" >
                         <thead>
                             <tr>
-                                <th className="thLeft">Name</th>
-                                <th className="thTable">Posicion:</th>
+                                <th className="thLeft">Nombre:</th>
+                                <th className="thTable">Posición:</th>
                                 <th className="thTable">Nombre de la Red:</th>
                                 <th className="thRight">Acciones</th>
                             </tr>

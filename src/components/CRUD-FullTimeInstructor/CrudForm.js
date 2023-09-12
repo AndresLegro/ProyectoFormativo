@@ -79,16 +79,17 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
   };
 
   return (
+  <div className="container">
     <div className="card">
-      <div className="card-body">
-        <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
+      <div className="center-table-form">
+        <h3 className="h3Table">{dataToEdit ? "Editar" : "Agregar"}</h3>
         <br></br>
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <input
               type="text"
               name="name"
-              placeholder="name"
+              placeholder="Nombre"
               className="form-control"
               onChange={handleChange}
               value={form.name}
@@ -98,7 +99,7 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             <input
               type="text"
               name="position"
-              placeholder="Posicion"
+              placeholder="Posición"
               className="form-control"
               onChange={handleChange}
               value={form.position}
@@ -120,18 +121,12 @@ const CrudForm = ({ createData, updateData, dataToEdit, setDataToEdit }) => {
             </select>
           </div>
           <button type="submit" className="btn btn-success">
-            Enviar
+            {dataToEdit ? "Editar" : "Agregar"}
           </button>&nbsp;
-          <button
-            type="reset"
-            className="btn btn-dark"
-            onClick={handleReset}
-          >
-            Limpiar
-          </button>
         </form>
       </div>
     </div>
+  </div>
   );
 };
 

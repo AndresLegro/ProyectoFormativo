@@ -9,8 +9,6 @@
     border-top-left-radius: 10px !important; 
     font-family: 'Raleway', sans-serif;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2); /* Agrega una sombra */
-
-
 }
 
 .thRight{
@@ -41,6 +39,7 @@
     align-items: center; /* Centrar verticalmente */
     text-align: center;
     font-family: 'Raleway', sans-serif;
+    margin-top: 24px;
 
 }
 
@@ -49,6 +48,8 @@
     justify-content: center; /* Centrar horizontalmente */
     align-items: center; /* Centrar verticalmente */
     text-align: center;
+    border-radius: 15px;
+
 }
 
 .center-table-form {
@@ -59,7 +60,6 @@
     height: 300px;
     width: 400px;
     margin: 16px;
-
 }
 
 .inputForm{
@@ -91,3 +91,12 @@
     border-radius: 15px !important; 
     font-family: 'Raleway', sans-serif;
 }
+
+/* Define un fondo con un gradiente lineal */
+.background-gradient {
+    background-image: linear-gradient(to bottom, #007BB8, #007BB8); /* Color de fondo */
+    background-repeat: no-repeat;
+    background-size: 100% 2px; /* Ancho del borde inferior y altura (ajusta según tus necesidades) */
+    background-position: 0 100%; /* Coloca el gradiente en la parte inferior */
+  }
+  

@@ -101,16 +101,19 @@ const CrudApp = () => {
     }
   };
 
-  // Funciones para controlar las vistas
   const showFormView = () => {
     setShowForm(true);
     setShowRecords(false);
-    setDataToEdit(null);
+    if (dataToEdit) {
+      setDataToEdit(null);
+    }
   };
 
   const showRecordsView = () => {
     setShowForm(false);
     setShowRecords(true);
+    // Limpia el formulario cuando cambias a la vista de registros
+    setDataToEdit(null);
   };
 
   return (
